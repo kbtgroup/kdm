@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Accesso al Sistema</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: #f7f7f7;
+  
+    width: 400px;
+  
+   
+}
+.login-containertop {
+    background: #f7f7f7;
+  
+    width: 400px;
+  
+   
+}
+
+
+.login-container h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.login-box {
+    background: linear-gradient(
+    to right,
+    #2c2f31 0%,
+    #2c2f31 50%,
+    #2f789c 50%,
+    #2f789c 100%
+  );
+    color: white;
+    margin-bottom: 30px;
+    padding: 10px 0;
+        text-align: center;
+}
+
+.login-box span {
+    font-size: 34px;
+    letter-spacing: 5px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+padding: 0px 30px 0px 30px;
+}
+
+.input-group label {
+    display: block;
+    color: #666;
+    margin-bottom: 5px;
+      
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+ 
+  
+    box-sizing: border-box;
+}
+
+.input-group input[type="submit"] {
+       background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+    width: 80px;
+    
+}
+
+.input-group input[type="submit"]:hover {
+    background-color: gray;
+}
+
+.footer {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    /* margin-top: 30px; */
+    padding: 3px 16px 10px 30px;
+    text-align: left;
+
+}
+.error-popup {
+    display: none; /* Nascondi di default */
+    position: fixed;
+    left: 50%;
+    top: -100px; /* Posiziona il popup fuori dalla vista in alto */
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Assicurati che sia sopra gli altri elementi */
+    transition: top 0.5s ease; /* Animazione per spostarsi verso il basso */
+}
+
+.error-message {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    border: 1px solid #D8000C;
+    padding: 10px;
+    border-radius: 4px;
+    width: 300px;
+    text-align: center;
+}
+    </style>
+    <script>
+window.onload = function() {
+    var errorPopup = document.getElementById('errorPopup');
+    if (errorPopup) {
+        // Mostra il popup
+        errorPopup.style.display = 'block';
+        // Muovi il popup in vista dopo un breve ritardo
+        setTimeout(function() {
+            errorPopup.style.top = '10%';
+        }, 100);
+
+        // Nascondi il popup dopo un certo periodo di tempo (es. 5 secondi)
+        setTimeout(function() {
+            errorPopup.style.top = '-100px';
+        }, 5000);
+    }
+};
+</script>
+</head>
+<body>
+<div style="position:fixed;top:5%;"><font size="6" color="#2087b0" >ACCESSO AL SISTEMA</font></div>
+<div th:if="${param.error}" class="error-popup" id="errorPopup">
+    <div class="error-message">
+        Credenziali non valide.<br>Per favore, riprova.
+    </div>
+</div>
+<div class="login-container">
+    
+    <div class="login-box">
+        <span align="center">&nbsp;&nbsp;&nbsp;<b>K DM </b></span>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="input-group">
+            <label for="username">Nome utente</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <input type="submit" value="Log in">            
+        </div>
+    </form>
+
+    <div class="footer">
+        © 20021-2024 KBT Software Inc. Tutti i diritti riservati.<br>
+    </div>
+</div>
+
+</body>
+</html>
