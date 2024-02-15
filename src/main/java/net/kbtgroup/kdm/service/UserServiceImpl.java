@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
 		User user=new User(registrationDto.getFirstName(),
 							registrationDto.getLastName(), 
 							registrationDto.getEmail(),
+							registrationDto.getRuolo(),
 							passwordEncoder.encode(registrationDto.getPassword()), 
 							Arrays.asList(new Role("ROLE_USER")));
 		
@@ -60,4 +61,8 @@ public class UserServiceImpl implements UserService {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	
 	}
+	 @Override
+	    public User findByEmail(String email) {
+	        return userRepository.findByEmail(email); // Implementa questo metodo
+	    }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <!-- Aggiungi qui eventuali link CSS o JS -->
+</head>
+<body>
+
+<h1>Posts</h1>
+
+<!-- Form per aggiungere un nuovo post -->
+<div>
+    <h2>Add a new post</h2>
+    <form th:action="@{/posts/add}" method="post">
+        <textarea name="content" placeholder="Write your post here..."></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Lista dei post -->
+<div>
+    <h2>Your Posts</h2>
+    <ul>
+        <li th:each="post : ${posts}">
+            <span th:text="${post.content}">Post Content</span>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

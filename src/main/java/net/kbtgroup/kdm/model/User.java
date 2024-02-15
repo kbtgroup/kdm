@@ -32,7 +32,7 @@ public class User
 	
 //	@Column(unique = true)
 	private String email;
-	
+	private String ruolo;
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -41,14 +41,17 @@ public class User
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles;
+
+
 	
 	public User() {}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	public User(String firstName, String lastName, String email, String ruolo, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.ruolo = ruolo;
 		this.password = password;
 		this.roles = roles;
 	}
@@ -84,7 +87,12 @@ public class User
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
+	public String getRuolo() {
+		return ruolo;
+	}
 	public String getPassword() {
 		return password;
 	}
